@@ -1,29 +1,29 @@
-# 智能血压计蓝牙 SDK-Android-20240615
+# Smart Blood Pressure Monitor with Bluetooth SDK-Android-20240615
 
-# **一、使用范围**
+# **One、Scope of Use**
 
-android 开发工程师
+android Development Engineer
 
-# **二、方法**
+# **two、Method**
 
-**2.0 sdk 使用步骤：**
+**2.0 sdk Steps for Use：**
 
 ```
- 1 Applicaton里调用MonitercenterManager._getInstance_().init(this); 初始化sdk
+ 1 Applicaton Invocation MonitercenterManager._getInstance_().init(this);  Initialize SDK
 ```
 
-### **2.1、全局回调接口**
+### **2.1、Global Callback Interface**
 
-所有异步回调方法均在此接口实现。
+All asynchronous callback methods are implemented in this interface.
 
-通过
+Through
 
 MonitercenterManager._getInstance_().registerBluetoothSettingChangeListener(this);
-MonitercenterManager._getInstance_().registerDataChangeListener(this); 注册回调
+MonitercenterManager._getInstance_().registerDataChangeListener(this); Register Callback
 
-**2.1.1、实现的接口名: IBluetoothStateChangeListener****  和 IDataChangeListener**
+**2.1.1、Name of the implemented interface: IBluetoothStateChangeListener****  and IDataChangeListener**
 
-**2.1.2、示例**
+**2.1.2、Example**
 
 ```json
 public class **BluetoothStateChangeListener implements IBluetoothStateChangeListener** {
@@ -31,33 +31,33 @@ public class **BluetoothStateChangeListener implements IBluetoothStateChangeList
     @Override
     public void onBluetoothAdapterStateChange(boolean currentState) {
         if (!currentState) {
-          //蓝牙关闭
+          //Bluetooth turned off
     
         } else {
-          //蓝牙打开
+          //Bluetooth turned on
         }
     }
     @Override
     public void onAdapterDiscoveryStarted() {
-       //扫描开始
+       //Scanning started
     }
     
     @Override
     public void onDeviceFound(BleDevice bleDevice) {
         Log._i_(_TAG_, "onDeviceFound name:" + bleDevice.getName() + " address:" + bleDevice.getAddress());
-        //扫描到的蓝牙设备
+        //Bluetooth devices scanned
     }
     
     @Override
     public void onAdapterDiscoveryFinished() {
-         //蓝牙搜索结束
+         //Bluetooth scan finished
     }
     
     @Override
     public void onBleConnectedStateChanged(BleDevice bleDevice, int connectState, int reasonState) {
         Log._i_(_TAG_, "onBleConnectedStateChanged bleDevice:" + bleDevice.getName()
                 + " address:" + bleDevice.getAddress() + "  connectState:" + connectState + "  reasonState:" + reasonState);
-        //蓝牙连接状态        
+        //Bluetooth connection status
         switch (connectState) {
             case BleDef._PROFILE_STATE_CONNECTED_: {
                
@@ -92,103 +92,103 @@ public class **DataChangeListener implements IDataChangeListener**{
     @Override
     public void onStartMeasurStateChanged(int status) {
         Log._i_(_TAG_, "onStartMeasurStateChanged status:" + status);
-       //启动测量 发送1 成功 0失败
+       //Start measurement: Sending 1 for success, 0 for failure
     }
     
     @Override
     public void onStopMeasurStateChanged(int status) {
         Log._i_(_TAG_, "onStopMeasurStateChanged status:" + status);
-       //停止测量 发送1 成功 0失败
+       //Stop measurement: Sending 1 for success, 0 for failure
     }
     
     @Override
     public void onSetVolumeStateChanged(int status) {
         Log._i_(_TAG_, "onSetVolumeStateChanged status:" + status);
-        //设置音量 发送1 成功 0失败
+        //Set volume: Sending 1 for success, 0 for failure
     }
     
     @Override
     public void onQueryVolumeStateChanged(int status) {
         Log._i_(_TAG_, "onQuueryVolumeStateChanged status:" + status);
-       //查询音量 发送1 成功 0失败
+       //Query volume: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onSendDateStateChanged(int status) {
         Log._i_(_TAG_, "onSendDateStateChanged status:" + status);
-        //设置时间 发送1 成功 0失败
+        //Set time: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onQueryBatteryStateChanged(int status) {
         Log._i_(_TAG_, "onQueryBatteryStateChanged status:" + status);
-        //查询电量 发送1 成功 0失败
+        //Query battery level: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onQueryHistoryDataStateChanged(int status) {
         Log._i_(_TAG_, "onQueryHistoryDataStateChanged status:" + status);
-       //查询历史记录 发送1 成功 0失败
+       //Query history records: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onClearHistoryDataStateChanged(int status) {
         Log._i_(_TAG_, "onClearHistoryDataStateChanged status:" + status);
-        //清除历史记录 发送1 成功 0失败
+        //Clear history records: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onSendAckChanged(int status) {
         Log._i_(_TAG_, "onClearHistoryDataStateChanged status:" + status);
-        //发送ack发送1 成功 0失败
+        //Send ACK (Acknowledgment): Send 1 for success, 0 for failure
     }
     
     @Override
     public void onUpdateRemindTaskStateChanged(int status) {
         Log._i_(_TAG_, "onUpdateRemindTaskStateChanged status:" + status);
-               //设置任务提醒发送1 成功  0失败
+               //Set task reminder: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onCancelRemindTaskStateChanged(int status) {
         Log._i_(_TAG_, "onCancelRemindTaskStateChanged status:" + status);
-        //取消任务提醒发送1 成功  0失败
+        //Cancel task reminder: Send 1 for success, 0 for failure
     }
     
     @Override
     public void onHistoryData(MeasurBean measurBean) {
         Log._i_(_TAG_, "onHistoryData ");
-        //历史测量数据
+        //Historical measurement data
     }
     
     @Override
     public void onMeasurData(MeasurBean measurBean) {
         Log._i_(_TAG_, "onMeasurData ");
-        //当前测量数据
+        //Current measurement data
     }
     
     @Override
     public void onMeasurPressureValue(double value) {
         Log._i_(_TAG_, "onMeasurPressureValue value：" + value);
-         //当前测量压力值
+         //Current measured pressure value
     }
     
     @Override
     public void onBattery(int battery) {
         Log._i_(_TAG_, "onBattery battery：" + battery);
-       //当前音量
+       //Current volume
     }
     
     @Override
     public void onVolume(int volume) {
         Log._i_(_TAG_, "onVolume volume：" + volume);
-        //当前音量
+        //Current volume
     }
     
     @Override
     public void onError(int error) {
         Log._i_(_TAG_, "onError error：" + error);
-        //测量错误码
+        //Measurement error code
     }
 
 }
@@ -196,480 +196,480 @@ public class **DataChangeListener implements IDataChangeListener**{
 
 public class MeasurBean implements Serializable {
 
-    public int sys1 ;//SYS收缩压值
-    public int sys2;//SYS收缩压值
+    public int sys1 ;//SYS Systolic blood pressure
+    public int sys2;//SYS Systolic pressure
    
-    public  int dia;//舒张压值
-    public  int bpm; //心率值
-    public  int afib; //房颤状态（0：无，1：有）
-    public  int ihb ; //心率不齐状态（0：无，1：有）
-    public  int as ;//动脉硬化（（0：无，1：有）
-    public  int userId;//用户ID (0：用户1 1：用户2）
-    public  int year; //APP年份-2000+(对应值）
-    public  int month;//月份
-    public  int day;//天数
-    public  int hour;//小时
-    public  int min;//分钟
-    public  int sec;//秒
-    public  int state ;//测量状态（0：升压  1：降压 2：双模 ）
-    public  int battery ;//电量（XX %）如05：代表5%电量 APP显示百分比 OXFF: USB供电时无电量显示 ）
-    public  int pMode ;//供电模式 （00：电池供电  01：USB供电 ）
-    public  int rssi ;//蓝牙信号强度（-dbm ~0dbm）APP显示要加负号  0XFF: 历史数据上传
+    public  int dia;//Diastolic pressure
+    public  int bpm; //Heart rate
+    public  int afib; //Atrial fibrillation status (0: none, 1: present)
+    public  int ihb ; //Irregular heart rate status (0: none, 1: present)
+    public  int as ;//Arterial stiffness (0: none, 1: present)
+    public  int userId;//User ID (0: User 1, 1: User 2)
+    public  int year; //APP year-2000+(corresponding value)
+    public  int month;//Month
+    public  int day;//Days
+    public  int hour;//Hours
+    public  int min;//Minutes
+    public  int sec;//Seconds
+    public  int state ;//Measurement status (0: increasing pressure, 1: decreasing pressure, 2: dual mode)
+    public  int battery ;//Battery level（XX %）If shown as "05", it represents 5% battery level. The app displays the percentage. "0xFF" indicates no battery display when powered by USB.
+    public  int pMode ;//Power supply mode (00: battery powered, 01: USB powered)
+    public  int rssi ;//Bluetooth signal strength (-dBm to 0dBm). Display in the app requires a negative sign. "0xFF" indicates historical data upload.
     
 }
 
 
 _/**_
-_ * 蓝牙设备_
+_ * Bluetooth device_
 _ */_
 public class BleDevice implements Serializable {
     _/**_
-_     * 蓝牙名称_
+_     * Bluetooth device_
 _     */_
 _    _private String name ;
     _/**_
-_     * 蓝牙mac地址_
+_     * Bluetooth MAC address_
 _     */_
 _    _private String address ;
  
 }
 ```
 
-**2.1.3、蓝牙打开状态: onBluetoothAdapterStateChange**
+**2.1.3、Bluetooth status: on: onBluetoothAdapterStateChange**
 
-**2.1.3.1、返回参数**
+**2.1.3.1、Return parameters**
 
-**2.1.3.2、示例**
+**2.1.3.2、Example**
 
 ```json
 @Override
 public void onBluetoothAdapterStateChange(boolean currentState) {
     if (!currentState) {
-      //蓝牙关闭
+      //Bluetooth disabled
 
     } else {
-      //蓝牙打开
+      //Bluetooth enabled
     }
 }
 ```
 
-**2.1.4、蓝牙开始扫描：onAdapterDiscoveryStarted**
+**2.1.4、Bluetooth scanning started：onAdapterDiscoveryStarted**
 
-**2.1.4.1、返回参数：无**
+**2.1.4.1、Return parameters: None**
 
-**2.1.4.2、示例**
+**2.1.4.2、Example**
 
 ```json
 @Override
 public void onAdapterDiscoveryStarted() {
-    //开启搜索
+    //Start search
 }
 ```
 
-**2.1.5、蓝牙扫描到的蓝牙设备：onDeviceFound（BleDevice bleDevice）**
+**2.1.5、Bluetooth devices found during Bluetooth scan：onDeviceFound（BleDevice bleDevice）**
 
-**2.1.5.1、返回参数：BleDevice**
+**2.1.5.1、Return parameters：BleDevice**
 
-**2.1.5.2、示例**
+**2.1.5.2、Example**
 
 ```java
 @Override
 public void onDeviceFound(BleDevice bleDevice) {
-  //搜索到的设备
+  //Detected devices
 }
 ```
 
-**2.1.6、蓝牙扫描搜索结束：onAdapterDiscoveryFinished()**
+**2.1.6、The Bluetooth scan search is complete.：onAdapterDiscoveryFinished()**
 
-**2.1.6.1、返回参数：**
+**2.1.6.1、return parameter：**
 
-**2.1.6.2、示例**
+**2.1.6.2、Example**
 
 ```java
 @Override
 public void onAdapterDiscoveryFinished() {
-   //搜索结束
+   //Search ended.
 }
 ```
 
-**2.1.7、蓝牙连接状态通知：onBleConnectedStateChanged(BleDevice bleDevice, int connectState, int reasonState)**
+**2.1.7、Bluetooth connection status notification：onBleConnectedStateChanged(BleDevice bleDevice, int connectState, int reasonState)**
 
-**2.1.7.1、返回参数：**
+**2.1.7.1、return parameter：**
 
-**2.1.7.2、示例**
+**2.1.7.2、Example**
 
 ```java
 @Override
 public void onBleConnectedStateChanged(BleDevice bleDevice, int connectState, int reasonState) {
-    //连接状态
+    //Connection status
 ｝
 ```
 
-**2.1.8、启动测量结果通知：onStartMeasurStateChanged(int status)**
+**2.1.8、Start measurement result notification：onStartMeasurStateChanged(int status)**
 
-**2.1.8.1、返回参数：**
+**2.1.8.1、return parameter：**
 
-**2.1.8.2、示例**
+**2.1.8.2、Example**
 
 ```java
 @Override
 public void onStartMeasurStateChanged(int status) {
-    //启动测量
+    //Start measurement
 }
 ```
 
-**2.1.9、停止测量结果通知：onStopMeasurStateChanged(int status)**
+**2.1.9、Stop measurement result notification：onStopMeasurStateChanged(int status)**
 
-**2.1.9.1、返回参数：**
+**2.1.9.1、return parameter：**
 
-**2.1.9.2、示例**
+**2.1.9.2、Example**
 
 ```java
 @Override
 public void onStopMeasurStateChanged(int status) {
     Log._i_(_TAG_, "onStopMeasurStateChanged status:" + status);
-    //停止测量
+    //Stop measurement
 }
 ```
 
-**2.1.10、设置音量结果通知：onSetVolumeStateChanged(int status)**
+**2.1.10、Set volume result notification：onSetVolumeStateChanged(int status)**
 
-**2.1.10.1、返回参数：**
+**2.1.10.1、return parameter：**
 
-**2.1.10.2、示例**
+**2.1.10.2、Example**
 
 ```java
 @Override
 public void onSetVolumeStateChanged(int status) {
     Log._i_(_TAG_, "onSetVolumeStateChanged status:" + status);
-    //设置音量通知
+    //Volume setting notification
 }
 ```
 
-**2.1.11、查询音量结果通知：onQueryVolumeStateChanged(int status)**
+**2.1.11、Query volume result notification：onQueryVolumeStateChanged(int status)**
 
-**2.1.11.1、返回参数：**
+**2.1.11.1、return parameter：**
 
-**2.1.11.2、示例**
+**2.1.11.2、Example**
 
 ```java
 @Override
 public void onQueryVolumeStateChanged(int status) {
-    //**查询**音量通知
+    //**Query**Volume notification
    
 }
 ```
 
-**2.1.12、设置时间结果通知：onSendDateStateChanged(int status)**
+**2.1.12、Set time result notification：onSendDateStateChanged(int status)**
 
-**2.1.12.1、返回参数：**
+**2.1.12.1、return parameter：**
 
-**2.1.12.2、示例**
+**2.1.12.2、Example**
 
 ```java
 @Override
 public void onSendDateStateChanged(int status) {
-   //**设置时间结果通知**
+   //**Set time result notification**
 }
 ```
 
-**2.1.13、查询电量结果通知：onQueryBatteryStateChanged(int status)**
+**2.1.13、Query battery level notification：onQueryBatteryStateChanged(int status)**
 
-**2.1.13.1、返回参数：**
+**2.1.13.1、return parameter：**
 
-**2.1.13.2、示例**
+**2.1.13.2、Example**
 
 ```java
 @Override
 public void onQueryBatteryStateChanged(int status) {
-    //**查询电量结果通知**
+    //**Query battery level result notification**
 }
 ```
 
-**2.1.14、查询历史记录结果通知：onQueryHistoryDataStateChanged(int status)**
+**2.1.14、Query history record result notification：onQueryHistoryDataStateChanged(int status)**
 
-**2.1.14.1、返回参数：**
+**2.1.14.1、return parameter：**
 
-**2.1.14.2、示例**
+**2.1.14.2、Example**
 
 ```java
 @Override
 public void onQueryHistoryDataStateChanged(int status) {
-   //**查询历史记录结果通知**
+   //**Query history record result notification**
 }
 ```
 
-**2.1.15、清除历史记录结果通知：onClearHistoryDataStateChanged(int status)**
+**2.1.15、Clear history record result notification：onClearHistoryDataStateChanged(int status)**
 
-**2.1.15.1、返回参数：**
+**2.1.15.1、return parameter：**
 
-**2.1.15.2、示例**
+**2.1.15.2、Example**
 
 ```java
 @Override
 public void onClearHistoryDataStateChanged(int status) {
-   //**清除历史记录结果通知**
+   //**Clear history record result notification**
 }
 ```
 
-**2.1.16、发送 ack 结果通知：onSendAckChanged(int status)**
+**2.1.16、Send ACK result notification：onSendAckChanged(int status)**
 
-**2.1.16.1、返回参数：**
+**2.1.16.1、return parameter：**
 
-**2.1.16.2、示例**
+**2.1.16.2、Example**
 
 ```java
 @Override
 public void onSendAckChanged(int status) {
-  //**发送ack结果通知**
+  //**Send ACK result notification**
 }
 ```
 
-**2.1.17 设置任务提醒结果通知：onUpdateRemindTaskStateChanged(int status)**
+**2.1.17 Set task reminder result notification：onUpdateRemindTaskStateChanged(int status)**
 
-**2.1.17.1、返回参数：**
+**2.1.17.1、return parameter：**
 
-**2.1.17.2、示例**
+**2.1.17.2、Example**
 
 ```java
 @Override
 public void onUpdateRemindTaskStateChanged(int status) {
-   //**设置任务提醒结果通知**
+   //**Set task reminder result notification**
 }
 ```
 
-**2.1.18 取消任务提醒结果通知：onCancelRemindTaskStateChanged(int status)**
+**2.1.18 Cancel task reminder result notification：onCancelRemindTaskStateChanged(int status)**
 
-**2.1.18.1、返回参数：**
+**2.1.18.1、return parameter：**
 
-**2.1.18.2、示例**
+**2.1.18.2、Example**
 
 ```java
 @Override
 public void onCancelRemindTaskStateChanged(int status) {
-   //取消任务提醒
+   //Cancel task reminder
 }
 ```
 
-**2.1.19 请求获取历史记录结果通知：onHistoryData(MeasurBean measurBean)**
+**2.1.19 Request for history record result notification：onHistoryData(MeasurBean measurBean)**
 
-**2.1.19.1、返回参数：**
+**2.1.19.1、return parameter：**
 
-**2.1.19.2、示例**
+**2.1.19.2、Example**
 
 ```java
 @Override
 public void onHistoryData(MeasurBean measurBean) {
-    //** 请求获取历史记录结果通知**
+    //** Request history record result notification**
 }
 ```
 
-**2.1.20 当前测量数据记录结果通知：onMeasurData(MeasurBean measurBean)**
+**2.1.20 Current measurement data record result notification：onMeasurData(MeasurBean measurBean)**
 
-**2.1.0.1、返回参数：**
+**2.1.0.1、return parameter：**
 
-**2.1.20.2、示例**
+**2.1.20.2、Example**
 
 ```java
 @Override
 public void onMeasurData(MeasurBean measurBean) {
-//**当前测量数据记录结果通知**
+//**Current measurement data record result notification**
 ｝
 ```
 
-**2.1.21 当前测量压力值结果通知：onMeasurPressureValue(double value)**
+**2.1.21 Current measurement pressure value result notification：onMeasurPressureValue(double value)**
 
-**2.1.21.1、返回参数：**
+**2.1.21.1、return parameter：**
 
-**2.1.21.2、示例**
+**2.1.21.2、Example**
 
 ```java
 @Override
 public void onMeasurPressureValue(double value) {
-    //**当前测量压力值结果通知**
+    //**Current measurement pressure value result notification**
 }
 ```
 
-**2.1.2 当前测量压力值结果通知：onBattery(int battery)**
+**2.1.2 Current measurement pressure value result notification：onBattery(int battery)**
 
-**2.1.22.1、返回参数：**
+**2.1.22.1、return parameter：**
 
-**2.1.22.2、示例**
+**2.1.22.2、Example**
 
 ```java
 @Override
 public void onBattery(int battery) {
-    //电量通知
+    //Battery notification
 }
 ```
 
-**2.1.23 当前测量压力值结果通知：onVolume(int volume)**
+**2.1.23 Current measurement pressure value result notification：onVolume(int volume)**
 
-**2.1.23.1、返回参数：**
+**2.1.23.1、return parameter：**
 
-**2.1.23.2、示例**
+**2.1.23.2、Example**
 
 ```java
 @Override
 public void onVolume(int volume) {
-    //音量值
+    //Volume level
 }
 ```
 
-**2.1.24 当前测量压力值结果通知：onError(int error)**
+**2.1.24 Current pressure measurement result notification：onError(int error)**
 
-**2.1.24.1、返回参数：**
+**2.1.24.1、return parameter：**
 
-**2.1.24.2、示例**
+**2.1.24.2、Example**
 
 ```java
 @Override
 public void onError(int error) {
-    //错误码
+    //Error code
 }
 ```
 
-### **2.2、打开蓝牙模块**
+### **2.2、Enable Bluetooth module**
 
-打开蓝牙模块
+Enable Bluetooth module
 
-**2.2.1、方法: openBluetoothAdapter**
+**2.2.1、Method: openBluetoothAdapter**
 
-**2.2.2、参数:****无**
+**2.2.2、Parameter:****None**
 
-**2.2.3、返回参数:**
+**2.2.3、return parameter:**
 
-通过 IBluetoothStateChangeListener 接口，监听 onBluetoothAdapterStateChange 方法
+Through IBluetoothStateChangeListener Interface，Listen onBluetoothAdapterStateChange Method
 
-### **2.3、关闭蓝牙模块**
+### **2.3、Disable Bluetooth module**
 
-关闭蓝牙模块。调用该方法将断开所有已建立的连接并释放系统资源。建议在使用蓝牙流程后，与 `openBluetoothAdapter` 成对调用。
+To turn off the Bluetooth module. Calling this method will disconnect all established connections and release system resources. It's recommended to use this after finishing the Bluetooth process `openBluetoothAdapter` Call in pairs。
 
-**2.3.1、方法: ****closeBluetoothAdapter**
+**2.3.1、Method: ****closeBluetoothAdapter**
 
-**2.3.2、参数:****无**
+**2.3.2、Parameter:****None**
 
-**2.3.3、返回参数:**
+**2.3.3、return parameter:**
 
-通过 IBluetoothStateChangeListener 接口监听状态 onBluetoothAdapterStateChange 方法
+Through IBluetoothStateChangeListener Interface Listening status onBluetoothAdapterStateChange Method
 
-### **2.4、扫描蓝牙设备**
+### **2.4、Scan Bluetooth devices**
 
-开始搜寻附近的蓝牙外围设备。此操作比较耗费系统资源，请在搜索并连接到设备后调用 `stopBluetoothDevicesDiscovery` 方法停止搜索。
+Start scanning for nearby Bluetooth peripheral devices. This operation consumes system resources, so please call it after searching for and connecting to devices. `stopBluetoothDevicesDiscovery` Method to stop searching.。
 
-**2.4.1、方法: startBluetoothDevicesDiscovery**
+**2.4.1、Method: startBluetoothDevicesDiscovery**
 
-**2.4.2、参数:**
+**2.4.2、Parameter:**
 
-**2.3.3、返回参数:****无，通过 IBluetoothStateChangeListener 接口监听状态**
+**2.3.3、return parameter:****None，Through IBluetoothStateChangeListener Interface listening status**
 
-**2.4.5 示例：**
+**2.4.5 Example：**
 
 ```json
 @Override
 public void onAdapterDiscoveryStarted() {
   
-    //扫描开始
+    //Scan started
 }
 ```
 
-### **2.5、扫描新设备的****监听****事件**
+### **2.5、Scan for new devices****Listen****Event**
 
-监听寻找到新设备的事件
+Listen for events when new devices are found.
 
-**2.5.1、****IBluetoothStateChangeListener 接口****方法: ****onDeviceFound**
+**2.5.1、****IBluetoothStateChangeListener Interface****Method: ****onDeviceFound**
 
-**2.5.2、参数:**
+**2.5.2、Parameter:**
 
-**2.5.3、返回参数:**
+**2.5.3、return parameter:**
 
-**2.5.5 示例：**
+**2.5.5 Example：**
 
 ```json
 @Override
 public void onDeviceFound(BleDevice bleDevice) {
     Log._i_(_TAG_, "onDeviceFound name:" + bleDevice.getName() + " address:" + bleDevice.getAddress());
    
-    //扫描到设备监听方法
+    //Scan for device listener method
 }
 ```
 
-### **2.6、停止扫描蓝牙设备**
+### **2.6、Stop scanning Bluetooth devices**
 
-停止搜寻附近的蓝牙外围设备。若已经找到需要的蓝牙设备并不需要继续搜索时，建议调用该接口停止蓝牙搜索。
+Stop scanning nearby Bluetooth peripheral devices. It is recommended to call this interface to stop Bluetooth scanning when the desired Bluetooth device has been found and further scanning is not needed.。
 
-**2.6.1、方法: stopBluetoothDevicesDiscovery**
+**2.6.1、Method: stopBluetoothDevicesDiscovery**
 
-**2.6.2、参数:****无**
+**2.6.2、Parameter:****None**
 
-**2.6.3、返回参数:****无，通过 IBluetoothStateChangeListener 接口监听状态**
+**2.6.3、return parameter:****None，Through IBluetoothStateChangeListener Interface listens to status**
 
-**2.6.5 示例：**
+**2.6.5 Example：**
 
 ```json
 @Override
 public void onAdapterDiscoveryFinished() {
-    //扫描结束
+    //Scanning finished
 }
 ```
 
-### **2.7、监听蓝牙状态**
+### **2.7、Listen for Bluetooth status**
 
-监听蓝牙适配器状态变化事件
+Listen for Bluetooth adapter state change events
 
-**2.7.1、方法: ****void onBluetoothAdapterStateChange(boolean currentState);**
+**2.7.1、Method: ****void onBluetoothAdapterStateChange(boolean currentState);**
 
-**2.7.2、参数:**
+**2.7.2、Parameter:**
 
-**2.7.5 示例：**
+**2.7.5 Example：**
 
 ```json
 @Override
 public void onBluetoothAdapterStateChange(boolean currentState) {
     if (!currentState) {
       
-        //蓝牙关闭
+        //Bluetooth turned off
     } else {
       
-        //蓝牙打开
+        //Bluetooth turned on
     }
 }
 ```
 
-### **2.8、获取蓝牙状态**
+### **2.8、Get Bluetooth status**
 
-获取本机蓝牙适配器状态。
+Get local Bluetooth adapter status。
 
-**2.8.1、方法: getBluetoothAdapterState**
+**2.8.1、Method: getBluetoothAdapterState**
 
-**2.8.2、参数:**
+**2.8.2、parameter:**
 
-**2.8.3、返回参数:**
+**2.8.3、return parameter:**
 
-**2.8.4 示例：**
+**2.8.4 Example：**
 
 ```json
-MonitercenterManager._getInstance_().getBluetoothAdapterState() ；//获取蓝牙状态
+MonitercenterManager._getInstance_().getBluetoothAdapterState() ；//To get the Bluetooth status
 ```
 
-### **2.9、设备连接**
+### **2.9、Device connected**
 
-连接低功耗蓝牙设备。
+Connect to a Bluetooth Low Energy (BLE) device。
 
-**2.9.1、方法:****createBLEConnect**
+**2.9.1、Method:****createBLEConnect**
 
-**2.9.2、参数:**
+**2.9.2、parameter:**
 
-**2.9.3、返回参数:****无，通过 IBluetoothStateChangeListener 接口监听连接状态**
+**2.9.3、return parameter:****None，Through IBluetoothStateChangeListener Interface listens for connection status**
 
-**2.9.4 示例：**
+**2.9.4 Example：**
 
 ```json
 @Override
 public void onBleConnectedStateChanged(BleDevice bleDevice, int connectState, int reasonState) {
     Log._i_(_TAG_, "onBleConnectedStateChanged bleDevice:" + bleDevice.getName()
             + " address:" + bleDevice.getAddress() + "  connectState:" + connectState + "  reasonState:" + reasonState);
-            //连接状态
+            //Connection status
     switch (connectState) {
         case BleDef._PROFILE_STATE_CONNECTED_: {
            
@@ -678,135 +678,135 @@ public void onBleConnectedStateChanged(BleDevice bleDevice, int connectState, in
         ｝
 ```
 
-### **2.10、断开设备连接**
+### **2.10、Disconnect device connection**
 
-**2.10.1、方法:****closeBLEConnect**
+**2.10.1、Method:****closeBLEConnect**
 
-**2.10.2、参数:**
+**2.10.2、parameter:**
 
-**2.10.3、返回参数:****无，通过 IBluetoothStateChangeListener 接口监听连接状态**
+**2.10.3、return parameter:****None，Through IBluetoothStateChangeListener Interface listens for connection status**
 
-**2.10.4 示例：**
+**2.10.4 Example：**
 
 ```json
 @Override
 public void onBleConnectedStateChanged(BleDevice bleDevice, int connectState, int reasonState) {
     Log._i_(_TAG_, "onBleConnectedStateChanged bleDevice:" + bleDevice.getName()
             + " address:" + bleDevice.getAddress() + "  connectState:" + connectState + "  reasonState:" + reasonState);
-        //连接状态            
+        //Connection status           
     ｝
 ```
 
-### **2.11、发送时间**
+### **2.11、Send time**
 
-app 连接成功后，主动发送当前时间给设备
+app After successful connection, actively send the current time to the device.
 
-**2.11.1、方法:sendDate**
+**2.11.1、Method:sendDate**
 
-**2.11.2、参数:**
+**2.11.2、parameter:**
 
-**2.11.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onSendDateStateChanged(int status); 方法通知是否设置成功，status1 成功，0 失败**
+**2.11.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onSendDateStateChanged(int status); Method notification of successful setting，status1 Success，0 Failure**
 
-**2.11.5 示例：**
+**2.11.5 Example：**
 
 ```json
 @Override
 public void onSendDateStateChanged(int status) {
     Log._i_(_TAG_, "onSendDateStateChanged status:" + status);
     
-    // status == 1 ? "设置时间成功" : "设置时间失败";
+    // status == 1 ? "Set time successfully" : "Failed to set time";
    
 }
 ```
 
-### **2.12、开始测量**
+### **2.12、Start measurement**
 
-发送开始测量指令
+Send start measurement command
 
-**2.12.1、方法:startMeasuring**
+**2.12.1、Method:startMeasuring**
 
-**2.12.2、参数:**
+**2.12.2、parameter:**
 
-**2.12.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onStartMeasurStateChanged(int status); 方法通知是否启动成功，status1 成功，0 失败**
+**2.12.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onStartMeasurStateChanged(int status); Method notification of successful startup，status1 Success，0 Failure**
 
-**2.12.5 示例：**
+**2.12.5 Example：**
 
 ```json
 @Override
 public void onStartMeasurStateChanged(int status) {
     Log._i_(_TAG_, "onStartMeasurStateChanged status:" + status);
   
-   // status == 1 ? "启动设备测量成功" : "启动设备测量失败";
+   // status == 1 ? "Device measurement started successfully" : "Failed to start device measurement";
   
 }
 ```
 
-### **2.13、结束测量**
+### **2.13、End measurement**
 
-在测量的过程中，发送结束（终止）测量指令
+Send terminate measurement command during measurement
 
-**2.13.1、方法:stopMeasuring**
+**2.13.1、Method:stopMeasuring**
 
-**2.13.2、参数:**
+**2.13.2、parameter:**
 
-**2.13.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onStopMeasurStateChanged(int status); 方法通知是否停止成功，status1 成功，0 失败**
+**2.13.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onStopMeasurStateChanged(int status); Method notification of successful stop，status1 Success，0 Failure**
 
-**2.13.5 示例：**
+**2.13.5 Example：**
 
 ```json
 @Override
 public void onStopMeasurStateChanged(int status) {
     Log._i_(_TAG_, "onStopMeasurStateChanged status:" + status);
    
-   // status == 1 ? "停止设备测量成功" : "停止设备测量失败";
+   // status == 1 ? "Device measurement stopped successfully" : "Failed to stop device measurement";
  
 }
 ```
 
-### **2.14、设置音量**
+### **2.14、Set volume**
 
-(0/1/2/3 档）
+(0/1/2/3 Level）
 
-静音：NUM=0  默认：NUM=2
+Mute：NUM=0  Default：NUM=2
 
-**2.14.1、方法:****setVolume**
+**2.14.1、Method:****setVolume**
 
-**2.14.2、参数:**
+**2.14.2、parameter:**
 
-**2.14.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onSetVolumeStateChanged(int status); 方法通知是否设置成功成功，status1 成功，0 失败**
+**2.14.3、Returnparameter:****None，Through IDataChangeListener Interface，Callback void onSetVolumeStateChanged(int status); Method notification of successful setting，status1 Success，0 Failure**
 
-**2.14.5 示例：**
+**2.14.5 Example：**
 
 ```json
 @Override
 public void onSetVolumeStateChanged(int status) {
     Log._i_(_TAG_, "onSetVolumeStateChanged status:" + status);
 
-   // = status == 1 ? "设置音量成功" : "设置音量失败";
+   // = status == 1 ? "Volume set successfully" : "Failed to set volume";
  
 }
 ```
 
-### **2.15、获取音量**
+### **2.15、Get volume**
 
-(0/1/2/3 档）
+(0/1/2/3 Level）
 
-静音：NUM=0  默认：NUM=2
+Mute：NUM=0  Default：NUM=2
 
-**2.15.1、方法:getVol****ume**
+**2.15.1、Method:getVol****ume**
 
-**2.15.2、参数:**
+**2.15.2、parameter:**
 
-**2.15.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onQueryVolumeStateChanged(int status); 方法通知是否获取成功，status1 成功，0 失败，音量数据通过 void onVolume(int volume) 接口通知音量大小**
+**2.15.3、Returnparameter:****None，Through IDataChangeListener Interface，Callback void onQueryVolumeStateChanged(int status); Method notification of successful retrieval，status1 Success，0 Failure，Volume data Through void onVolume(int volume)  Interface notifies volume level**
 
-**2.15.5 示例：**
+**2.15.5 Example：**
 
 ```json
 @Override
 public void onQueryVolumeStateChanged(int status) {
     Log._i_(_TAG_, "onQuueryVolumeStateChanged status:" + status);
     
-    //message.obj = status == 1 ? "获取音量成功" : "获取音量失败";
+    //message.obj = status == 1 ? "Volume retrieved successfully" : "Failed to retrieve volume";
    
 }
 
@@ -814,146 +814,146 @@ public void onQueryVolumeStateChanged(int status) {
 public void onVolume(int volume) {
     Log._i_(_TAG_, "onVolume volume：" + volume);
   
-    //message.obj = "接收音量:" + volume;
+    //message.obj = "Receive volume:" + volume;
    
 }
 ```
 
-### **2.16、获取电量**
+### **2.16、Get battery level**
 
-获取设备当前电量，单位：%
+Get the current battery level of the device，unit：%
 
-**2.16.1、方法:getBattery**
+**2.16.1、Method:getBattery**
 
-**2.16.2、参数:**
+**2.16.2、parameter:**
 
-**2.16.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onSendDateStateChanged(int status); 方法通知是否获取成功，status1 成功，0 失败，电量数据通过 void onBattery(int battery) 接口通知音量大小**
+**2.16.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onSendDateStateChanged(int status); Method notification of successful retrieval，status1 Success，0 Failure，Battery data passed void onBattery(int battery) Interface notifies volume level**
 
-**2.16.5 示例：**
+**2.16.5 Example：**
 
 ```json
 @Override
 public void onQueryBatteryStateChanged(int status) {
     Log._i_(_TAG_, "onQueryBatteryStateChanged status:" + status);
-    // status == 1 ? "查询电量成功" : "查询电量失败";
+    // status == 1 ? "Query battery level successful" : "Query battery level failed";
 }
 
 @Override
 public void onBattery(int battery) {
     Log._i_(_TAG_, "onBattery battery：" + battery);
    
-   // "接收电量:" + battery;
+   // "Receive battery:" + battery;
 }
 ```
 
-### **2.17、获取历史数据**
+### **2.17、Fetch historical data**
 
-主动发起获取历史记录的方法
+Initiate method to actively fetch historical records
 
-**2.17.1、方法:getHistoryData**
+**2.17.1、Method:getHistoryData**
 
-**2.17.2、参数:**
+**2.17.2、parameter:**
 
-**2.17.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onQueryHistoryDataStateChanged(int status); 方法通知是否获取成功，status1 成功，0 失败，电量数据通过 void onHistoryData(MeasurBean measurBean) 接口通知历史数据**
+**2.17.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onQueryHistoryDataStateChanged(int status); Method notification of successful retrieval，status1 Success，0 Failure，Battery data received void onHistoryData(MeasurBean measurBean) Interface notifies historical data**
 
-**2.17.5 示例：**
+**2.17.5 Example：**
 
 ```json
 @Override
 public void onQueryHistoryDataStateChanged(int status) {
     Log._i_(_TAG_, "onQueryHistoryDataStateChanged status:" + status);
    
-   // status == 1 ? "查询历史记录成功" : "查询历史记录失败";
+   // status == 1 ? "Query history records successful" : "Query history records failed";
    
 }
 
 @Override
 public void onHistoryData(MeasurBean measurBean) {
     Log._i_(_TAG_, "onHistoryData ");
-    //历史测量数据，全局接口有MeasureBean定义
+    //Historical measurement data, available through the global interface. MeasureBean Definition
 ｝
 ```
 
-### **2.18、删除历史数据**
+### **2.18、Delete historical data**
 
-主动发起删除历史数据
+Initiate deletion of historical data
 
-**2.18.1、方法:clearHistoryData**
+**2.18.1、Method:clearHistoryData**
 
-**2.18.2、参数:**** **
+**2.18.2、parameter:**** **
 
-**2.18.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onClearHistoryDataStateChanged(int status); 方法通知是否获取成功**
+**2.18.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onClearHistoryDataStateChanged(int status);  Method notification of successful retrieval**
 
-**2.18.5 示例：**
+**2.18.5 Example：**
 
 ```json
 @Override
 public void onClearHistoryDataStateChanged(int status) {
     Log._i_(_TAG_, "onClearHistoryDataStateChanged status:" + status);
     
-    // status == 1 ? "清除历史记录成功" : "清除历史记录失败";
+    // status == 1 ? "Clear history records successful" : "Clear history records failed";
 
 }
 ```
 
-### **2.19、设置提醒任务**
+### **2.19、Set reminder task**
 
-主动发起删除历史数据
+Initiate deletion of historical data
 
-**2.19.1、方法:setRemindTask**
+**2.19.1、Method:setRemindTask**
 
-**2.19.2、参数:**
+**2.19.2、parameter:**
 
-**2.17.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onUpdateRemindTaskStateChanged(int status); 方法通知是否设置成功**
+**2.17.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onUpdateRemindTaskStateChanged(int status);  Method notification of successful setting**
 
-**2.19.4 示例：**
+**2.19.4 Example：**
 
 ```json
 @Override
 public void onUpdateRemindTaskStateChanged(int status) {
     Log._i_(_TAG_, "onUpdateRemindTaskStateChanged status:" + status);
     
-    // status == 1 ? "设置提醒任务成功" : "设置提醒任务失败";
+    // status == 1 ? "Set reminder task successful" : "Set reminder task failed";
 }
 ```
 
-### **2.20、取消提醒任务**
+### **2.20、Cancel reminder task**
 
-主动发起删除历史数据
+Initiate deletion of historical data
 
-**2.20.1、方法:cancelRemindTask**
+**2.20.1、Method:cancelRemindTask**
 
-**2.20.2、参数:**
+**2.20.2、parameter:**
 
-**2.20.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void onCancelRemindTaskStateChanged(int status); 方法通知是否设置成功**
+**2.20.3、return parameter:****None，Through IDataChangeListener Interface，Callback void onCancelRemindTaskStateChanged(int status); Method notification of successful setting**
 
-**2.20.5 示例：**
+**2.20.5 Example：**
 
 ```json
 @Override
 public void onCancelRemindTaskStateChanged(int status) {
     Log._i_(_TAG_, "onCancelRemindTaskStateChanged status:" + status);
    
-    //status == 1 ? "取消提醒任务成功" : "取消提醒任务失败";
+    //status == 1 ? "Cancel reminder task successful" : "Cancel reminder task failed";
    
 }
 ```
 
-### **2.21、监听测量数据**
+### **2.21、Monitor measurement data**
 
-监听测量数据，包括测量数据，压力数据，错误测量数据
+Monitor measurement data, including measurement data, pressure data, and error measurement data.
 
-**2.21.1、****IDataChangeListener ****方法:****void onMeasurData(MeasurBean measurBean) 测量数据**
+**2.21.1、****IDataChangeListener ****Method:****void onMeasurData(MeasurBean measurBean) Measurement data**
 
 ```
- void onMeasurPressureValue(double value) 压力值
+ void onMeasurPressureValue(double value)  Pressure value
 ```
 
-**2.21.2、参数:无**
+**2.21.2、Parameters: none**
 
-**2.21.3、返回参数:****MeasurBean **
+**2.21.3、return parameter:****MeasurBean **
 
-**2.21.5 示例：**
+**2.21.5 Example：**
 
 ```json
 @Override
@@ -964,26 +964,26 @@ public void onMeasurData(MeasurBean measurBean) {
 public void onMeasurPressureValue(double value) {
     Log._i_(_TAG_, "onMeasurPressureValue value：" + value);
   
-   // "接收当前压力值:" + value;
+   // "Receive current pressure value:" + value;
 }
 ```
 
-### **2.22、发送 ack 数据接收确认（获取历史数或者实时数据都需要发送 ack 指令确认）**
+### **2.22、Send ACK for data reception confirmation (needed for fetching historical or real-time data).**
 
-**2.22.1、方法:sendACK**
+**2.22.1、Method:sendACK**
 
-**2.22.2、参数:**
+**2.22.2、parameter:**
 
-**2.22.3、返回参数:****无，通过 IDataChangeListener 接口，回调 void void onSendAckChanged(int status); 方法通知是否设置成功**
+**2.22.3、return parameter:****None，Through IDataChangeListener Interface，Callback void void onSendAckChanged(int status); Method notification of successful setting**
 
-**2.22.5 示例：**
+**2.22.5 Example：**
 
 ```json
 @Override
 public void onSendAckChanged(int status) {
-    Log._i_(_TAG_, "onClearHistoryDataStateChanged status:" + status);
- 
-   // status == 1 ? "发送ack成功" : "发送ack失败";
+  Log._i_(_TAG_, "onClearHistoryDataStateChanged status:" + status);
+
+  // status == 1 ? "ACK sent successfully" : "Failed to send ACK";
 
 }
 ```
