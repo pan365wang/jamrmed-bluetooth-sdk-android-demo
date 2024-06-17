@@ -729,6 +729,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
         message.what = RECEIVE_SUCCESS;
         message.obj = "Receive History:" + history;
         mHandler.sendMessage(message);
+        MonitercenterManager.getInstance().sendACK(); //需要调用，才不会重复接收到数据
     }
 
     @Override
@@ -744,7 +745,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
         message.what = RECEIVE_SUCCESS;
         message.obj = "Receive current measurement records:" + history;
         mHandler.sendMessage(message);
-
+        MonitercenterManager.getInstance().sendACK(); //需要调用，才不会重复接收到数据
     }
 
     @Override
