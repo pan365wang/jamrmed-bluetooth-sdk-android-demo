@@ -413,8 +413,9 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
                 //i年 i1月 i2日
                 //关闭窗体
                 datePickerDialog.cancel();
-                String month = i1>9?i1+"":"0" + i1;
-                String day = i2>9?i2+"":"0" + i1;
+                int m = i1 +1 ;
+                String month = m>9?m+"":"0" + m;
+                String day = i2>9?i2+"":"0" + i2;
                 showEndTaskDateDialog(i+ "-" + month + "-" + day);
                 Log.i(TAG," onDateSet year:" + i + "  month:" + i1 + "  day:" + i2);
             }
@@ -432,8 +433,9 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
                 //i年 i1月 i2日
                 //关闭窗体
                 datePickerDialog.cancel();
-                String month = i1>9?i1+"":"0" + i1;
-                String day = i2>9?i2+"":"0" + i1;
+                int m = i1 +1 ;
+                String month = m>9?m+"":"0" + m;
+                String day = i2>9?i2+"":"0" + i2;
                 showTaskTime(startDate,i+ "-" + month + "-" + day);
                 Log.i(TAG," onDateSet year:" + i + "  month:" + i1 + "  day:" + i2);
             }
@@ -467,8 +469,9 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
                 //i年 i1月 i2日
                 //关闭窗体
                 datePickerDialog.cancel();
-                String month = i1>9?i1+"":"0" + i1;
-                String day = i2>9?i2+"":"0" + i1;
+                int m = i1 +1 ;
+                String month = m>9?m+"":"0" + m;
+                String day = i2>9?i2+"":"0" + i2;
                 showTime(i+ "-" + month + "-" + day);
                 Log.i(TAG," onDateSet year:" + i + "  month:" + i1 + "  day:" + i2);
             }
