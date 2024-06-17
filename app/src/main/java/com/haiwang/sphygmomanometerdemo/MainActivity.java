@@ -396,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
             }
             break;
             case R.id.btn_interrupt_sync:{
-
+                MonitercenterManager.getInstance().interruptSyncHistory();
             }
             break;
         }
