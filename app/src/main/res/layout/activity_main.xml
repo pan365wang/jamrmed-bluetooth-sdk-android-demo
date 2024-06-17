@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <!--扫描设备-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_search"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_bg"
+                android:text="search"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_cur_con_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/ll_search"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_bg"
+                android:hint="Device Name"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/tv_bg"
+                android:hint="Device address"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_openbt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bt_bg"
+                    android:text="openBT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/bt_closebt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bt_bg"
+                    android:text="closeBT"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llytConnect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/bt_connect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/bt_bg"
+                    android:text="connect"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/bt_disconnect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bt_bg"
+                    android:text="disconnect"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!--搜索设备列表-->
+    <LinearLayout
+        android:id="@+id/ll_device_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/lv_devices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
+
+    <!--数据收发-->
+    <LinearLayout
+        android:id="@+id/ll_data_send_receive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_start"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_bg"
+                android:text="Start measur"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_stop"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="Stop measur"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_setVol"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="set volume"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_getVol"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="get volume"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+            <Button
+                android:id="@+id/btn_battery"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_bg"
+                android:layout_marginLeft="5dp"
+                android:text="get battery"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+            <Button
+                android:id="@+id/btn_set_time"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="set time"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+            <Button
+                android:id="@+id/btn_getHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="get history"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_clearHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="clear history"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_set_remind_task"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@drawable/bt_bg"
+                android:text="set remind"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_cancel_remind_task"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="cancel remind"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_interrupt_sync"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_bg"
+                android:text="Interrupt"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Display the received data operation results"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/tv_bg">
+
+            <TextView
+                android:id="@+id/tv_send_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="The result of sending data operation is displayed here"
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+        </ScrollView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Display received data"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/tv_bg">
+
+            <TextView
+                android:id="@+id/tv_receive_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="The result of sending data operation is displayed here"
+                android:padding="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</LinearLayout>
+
+
