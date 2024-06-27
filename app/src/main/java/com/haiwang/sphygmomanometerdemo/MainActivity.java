@@ -693,7 +693,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
 
     @Override
     public void onSendAckChanged(int status) {
-        Log.i(TAG, "onClearHistoryDataStateChanged status:" + status);
+        Log.i(TAG, "onSendAckChanged status:" + status);
         Message message = new Message();
         message.what = status == 1 ? SEND_SUCCESS : SEND_FAILURE;
         message.obj = status == 1 ? "Successfully sent ack" : "Sending ack failed";
@@ -727,7 +727,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
                 " as:" + measurBean.as + " userId:" + measurBean.userId + " year:" + measurBean.year + " month:" + measurBean.month + " day:" + measurBean.day +
                 " hour:" + measurBean.hour + " min:" + measurBean.min + " sec:" + measurBean.sec + " state:" + measurBean.state + " battery:" + measurBean.battery +
                 " pMode:" + measurBean.pMode + " rssi:" + measurBean.rssi;
-
+        //rssi = 255 表示历史数据
         Message message = new Message();
         message.what = RECEIVE_SUCCESS;
         message.obj = "Receive History:" + history;
