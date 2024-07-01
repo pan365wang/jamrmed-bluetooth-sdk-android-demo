@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
         findViewById(R.id.btn_set_remind_task).setOnClickListener(this);
         findViewById(R.id.btn_cancel_remind_task).setOnClickListener(this);
         findViewById(R.id.btn_set_time).setOnClickListener(this);
-        findViewById(R.id.btn_interrupt_sync).setOnClickListener(this);
+
 
 
         lvDevices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -395,10 +395,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
                 showDateDialog();
             }
             break;
-            case R.id.btn_interrupt_sync:{
-                MonitercenterManager.getInstance().interruptSyncHistory();
-            }
-            break;
+
         }
     }
 
@@ -787,12 +784,5 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
         mHandler.sendMessage(message);
     }
 
-    @Override
-    public void onInterruptSyncHistoryChanged(int status) {
-        Log.i(TAG, "onInterruptSyncHistoryChanged status：" + status);
-        Message message = new Message();
-        message.what = status == 1 ? SEND_SUCCESS : SEND_FAILURE;
-        message.obj = status == 1 ? "Interrupt synchronization sucess" : "Interrupt synchronization failed";
-        mHandler.sendMessage(message);
-    }
+
 }
