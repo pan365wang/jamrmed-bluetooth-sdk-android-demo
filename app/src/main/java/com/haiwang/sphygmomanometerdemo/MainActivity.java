@@ -517,7 +517,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
     public  void showHistoryNumberPicker() {
         NumberPicker numberPicker = new NumberPicker(this);
         numberPicker.setMinValue(0); // 设置最小值
-        numberPicker.setMaxValue(1); // 设置最大值
+        numberPicker.setMaxValue(3); // 设置最大值
         numberPicker.setValue(0); // 设置初始值
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
