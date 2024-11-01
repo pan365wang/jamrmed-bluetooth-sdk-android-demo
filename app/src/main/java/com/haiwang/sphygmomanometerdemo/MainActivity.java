@@ -719,7 +719,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
     @Override
     public void onHistoryData(MeasurBean measurBean) {
         Log.i(TAG, "onHistoryData ");
-        String history = "sys1:" + measurBean.sys1 + " sys2:" + measurBean.sys2 +
+        String history = "sys:" + measurBean.sys +
                 " dia:" + measurBean.dia + " bpm:" + measurBean.bpm + " fib:" + measurBean.afib + " ihb:" + measurBean.ihb +
                 " as:" + measurBean.as + " userId:" + measurBean.userId + " year:" + measurBean.year + " month:" + measurBean.month + " day:" + measurBean.day +
                 " hour:" + measurBean.hour + " min:" + measurBean.min + " sec:" + measurBean.sec + " state:" + measurBean.state + " battery:" + measurBean.battery +
@@ -735,7 +735,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
     @Override
     public void onMeasurData(MeasurBean measurBean) {
         Log.i(TAG, "onMeasurData ");
-        String history = "sys1:" + measurBean.sys1 + " sys2:" + measurBean.sys2 +
+        String history = "sys:" + measurBean.sys +
                 " dia:" + measurBean.dia + " bpm:" + measurBean.bpm + " fib:" + measurBean.afib + " ihb:" + measurBean.ihb +
                 " as:" + measurBean.as + " userId:" + measurBean.userId + " year:" + measurBean.year + " month:" + measurBean.month + " day:" + measurBean.day +
                 " hour:" + measurBean.hour + " min:" + measurBean.min + " sec:" + measurBean.sec + " state:" + measurBean.state + " battery:" + measurBean.battery +
