@@ -768,7 +768,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
 
     @Override
     public void onVolume(int volume) {
-        Log.i(TAG, "onVolume volume：" + volume);
+        Log.i(TAG, "onVolume volume:" + volume);
         Message message = new Message();
         message.what = RECEIVE_SUCCESS;
         message.obj = "Receive volume:" + volume;
