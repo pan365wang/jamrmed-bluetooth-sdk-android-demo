@@ -759,7 +759,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
 
     @Override
     public void onBattery(int battery) {
-        Log.i(TAG, "onBattery battery：" + battery);
+        Log.i(TAG, "onBattery battery:" + battery);
         Message message = new Message();
         message.what = RECEIVE_SUCCESS;
         message.obj = "Receiving power:" + battery;
