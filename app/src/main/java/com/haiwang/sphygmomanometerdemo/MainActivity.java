@@ -777,7 +777,7 @@ public class MainActivity extends AppCompatActivity implements IBluetoothStateCh
 
     @Override
     public void onError(int error) {
-        Log.i(TAG, "onError error：" + error);
+        Log.i(TAG, "onError error:" + error);
         Message message = new Message();
         message.what = RECEIVE_SUCCESS;
         message.obj = "Error code:" + error;
